@@ -1,0 +1,12 @@
+dependencies {
+	compile  group: 'com.jayway.awaitility', name: 'awaitility', version: awaility_version
+	compile  group: 'com.jayway.jsonpath', name: 'json-path'
+	compile  group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+	compile  group: 'org.springframework.boot', name: 'spring-boot-starter-jetty'
+	compile  group: 'org.assertj', name: 'assertj-core', version: assertj_core_version
+	compile  group: 'junit', name: 'junit'
+	compile  group: 'org.mockito', name: 'mockito-core'
+//	compile  group: 'com.mattbertolini', name: 'liquibase-slf4j', version: liquibase_slf4j_version
+	compile  group: 'org.hamcrest', name: 'hamcrest-library'
+	compile  group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: gatling_version
+}

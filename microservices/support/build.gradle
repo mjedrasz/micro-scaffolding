@@ -1,0 +1,8 @@
+apply plugin: 'java'
+dependencies {
+	compile project('discovery-service')
+	compile project('config-service')
+	compile project('monitoring-service')
+	compile project('turbine-service')
+	compile project('edge-service')
+}

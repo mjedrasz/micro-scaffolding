@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "baseName": "scaffold",
+    "packageName": "org.sample.scaffold",
+    "packageFolder": "org/sample/scaffold",
+    "authenticationType": "oauth2",
+    "hibernateCache": "hazelcast",
+    "clusteredHttpSession": "hazelcast",
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "useSass": true,
+    "buildTool": "gradle",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "enableTranslation": true,
+    "rememberMeKey": "580950b17a5aebcd93b122461355d9139567f5d9"
+  }
+}

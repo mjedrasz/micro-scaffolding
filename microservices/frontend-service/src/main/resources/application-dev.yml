@@ -1,0 +1,27 @@
+# Disable the spring security default configuration from spring-boot-actuator
+management.security.enabled: true
+security.basic.enabled: false
+
+info:
+  component: Sample frontend
+  
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+server:
+  port: 7676
+
+management:
+  context-path: /manage
+  
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /manage/info
+    healthCheckUrlPath: /manage/health
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

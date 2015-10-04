@@ -1,0 +1,28 @@
+dependencies {
+	compile "org.springframework.hateoas:spring-hateoas:${spring_hateoas_version}"
+	compile("org.springframework.boot:spring-boot-starter-web:${spring_boot_version}") {  exclude module: 'spring-boot-starter-tomcat'  }
+		
+	compile group: 'commons-lang', name: 'commons-lang', version: commons_lang_version
+	compile group: 'commons-io', name: 'commons-io', version: commons_io_version
+	compile "org.atteo:evo-inflector:${evo_inflector_version}"
+
+	compile "org.springframework.data:spring-data-commons:${spring_data_commons_version}"
+	compile "javax.servlet:javax.servlet-api:${servlet_api_version}"
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-json-org', version: jackson_version
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hppc', version: jackson_version
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-joda', version: jackson_version
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate4', version: jackson_version
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson_version
+	
+	compile group: 'io.dropwizard.metrics', name: 'metrics-core'
+	compile group: 'io.dropwizard.metrics', name: 'metrics-graphite', version: dropwizard_metrics_version
+	compile group: 'io.dropwizard.metrics', name: 'metrics-healthchecks', version: dropwizard_metrics_version
+	compile group: 'io.dropwizard.metrics', name: 'metrics-jvm', version: dropwizard_metrics_version
+	compile group: 'io.dropwizard.metrics', name: 'metrics-servlet', version: dropwizard_metrics_version
+	compile group: 'io.dropwizard.metrics', name: 'metrics-json', version: dropwizard_metrics_version
+	compile (group: 'io.dropwizard.metrics', name: 'metrics-servlets', version: dropwizard_metrics_version) { exclude(module: 'metrics-healthchecks') }
+	compile (group: 'com.ryantenney.metrics', name: 'metrics-spring', version: metrics_spring_version) {
+		exclude(module: 'metrics-core')
+	    exclude(module: 'metrics-healthchecks')
+	}
+}

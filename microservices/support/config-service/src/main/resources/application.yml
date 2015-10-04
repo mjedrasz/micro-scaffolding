@@ -1,0 +1,23 @@
+server:
+  port: 8888
+
+management:
+  context-path: /manage
+  
+spring:
+  profiles:
+    active: native  
+    
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'
+    
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /manage/info
+    healthCheckUrlPath: /manage/health
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

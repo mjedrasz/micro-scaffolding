@@ -1,0 +1,15 @@
+rootProject.name = 'scaffold'
+
+include ':microservices:support',
+		':microservices:support:discovery-service',
+		':microservices:support:config-service',
+		':microservices:support:monitoring-service',
+		':microservices:support:turbine-service',
+		':microservices:support:edge-service',
+		':microservices:frontend-service',
+		':microservices:sample-service',
+		':commons',
+		':commons:async',
+		':commons:rest',
+		':commons:logback',
+		':commons:test'

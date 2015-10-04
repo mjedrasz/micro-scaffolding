@@ -1,0 +1,19 @@
+apply plugin: 'spring-boot'
+apply from: "$rootProject.projectDir/boot.gradle" 
+
+springBoot {
+	mainClass = 'com.scaffold.support.hystrix.app.HystrixDashboardApplication'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile("org.springframework.boot:spring-boot-starter-undertow")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:${hystrix_dashboard_version}")
+    compile "org.springframework.cloud:spring-cloud-netflix:${cloud_netflix_version}"
+    compile("org.springframework.cloud:spring-cloud-starter-eureka:${cloud_netflix_version}")
+    compile ("org.springframework.cloud:spring-cloud-starter-hystrix:${hystrix_version}")
+}
+

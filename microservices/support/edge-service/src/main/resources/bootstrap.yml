@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: zuul
+  cloud:
+    config:
+      enabled: false
+      uri: http://localhost:8888
+      
+      
+      

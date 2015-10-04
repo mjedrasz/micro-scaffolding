@@ -1,0 +1,30 @@
+info:
+  component: Zuul Server
+  
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  routes:
+    api: 
+      path: /api/**
+      serviceId: sample-service
+      stripPrefix: false
+    ui:
+      path: /ui/**
+      serviceId: frontend
+
+server:
+  port: 8765
+  
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,31 @@
+version="0.1-SNAPSHOT"
+
+apply plugin: 'spring-boot'
+apply from: "$rootProject.projectDir/boot.gradle" 
+
+
+if (project.hasProperty('prod')) {
+	apply from: 'profile_prod.gradle'
+} else if (project.hasProperty('fast')) {
+	apply from: 'profile_fast.gradle'
+} else {
+	apply from: 'profile_dev.gradle'
+}
+
+dependencies {
+	compile group: 'commons-lang', name: 'commons-lang', version: commons_lang_version
+	compile group: 'javax.inject', name: 'javax.inject', version: javax_inject_version
+	compile group: 'org.springframework.boot', name: 'spring-boot-actuator'
+	compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure'
+	compile group: 'org.springframework.boot', name: 'spring-boot-loader-tools'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging'
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web') { exclude module: 'spring-boot-starter-tomcat' }
+	compile(group: 'org.springframework', name: 'spring-context-support') { exclude(module: 'quartz') }
+	compile group: 'org.springframework.security', name: 'spring-security-config', version: spring_security_version
+	compile group: 'org.springframework.security', name: 'spring-security-web', version: spring_security_version
+	compile ("org.springframework.cloud:spring-cloud-starter-hystrix:${hystrix_version}")
+	compile "org.springframework.cloud:spring-cloud-netflix:${cloud_netflix_version}"
+	compile("org.springframework.cloud:spring-cloud-starter-eureka:${cloud_netflix_version}")
+	//compile ("org.springframework.cloud:spring-cloud-starter-hystrix:${hystrix_version}")
+//	compile group: 'org.springframework.cloud', name: 'spring-cloud-commons', version: cloud_netflix_version
+}

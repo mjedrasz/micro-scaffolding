@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: hystrix-dashboard
+  cloud:
+    config:
+      enabled: false
+      uri: http://localhost:8888
+      
+      
+      

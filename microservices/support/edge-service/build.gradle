@@ -1,0 +1,16 @@
+apply plugin: 'spring-boot'
+apply from: "$rootProject.projectDir/boot.gradle" 
+
+springBoot {
+	mainClass = 'com.scaffold.support.zuul.app.ZuulApplication'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile("org.springframework.boot:spring-boot-starter-undertow")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile ("org.springframework.cloud:spring-cloud-starter-zuul:${zuul_version}")
+	compile("org.springframework.cloud:spring-cloud-starter-eureka:${eureka_version}")
+}
