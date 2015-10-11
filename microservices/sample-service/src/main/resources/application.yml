@@ -1,7 +1,9 @@
 # Disable the spring security default configuration from spring-boot-actuator
 management.security.enabled: true
 security.basic.enabled: false
-
+spring.jpa:
+  hibernate.ddl-auto: none
+  show-sql: true
 info:
   component: Sample service
 

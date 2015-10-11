@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
-	<logger name="org.springframework.web" level="WARN" />
+<!-- 	<logger name="org.springframework.web" level="WARN" />
 	<logger name="org.sample.scaffold" level="DEBUG" />
 
 	<logger name="javax.activation" level="WARN" />
@@ -27,7 +27,7 @@
 	<logger name="org.springframework.cache" level="WARN" />
 	<logger name="org.thymeleaf" level="WARN" />
 	<logger name="org.xnio" level="WARN" />
-	<logger name="springfox" level="WARN" />
-	<logger name="liquibase" level="WARN" />
+	<logger name="springfox" level="WARN" /> -->
+	<logger name="liquibase" level="DEBUG" />
 	<logger name="sun.rmi.transport" level="WARN" />
 </configuration>

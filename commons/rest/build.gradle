@@ -5,8 +5,8 @@ dependencies {
 	compile group: 'commons-lang', name: 'commons-lang', version: commons_lang_version
 	compile group: 'commons-io', name: 'commons-io', version: commons_io_version
 	compile "org.atteo:evo-inflector:${evo_inflector_version}"
-
-	compile "org.springframework.data:spring-data-commons:${spring_data_commons_version}"
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.2.6.RELEASE'
+//	compile "org.springframework.data:spring-data-commons:${spring_data_commons_version}"
 	compile "javax.servlet:javax.servlet-api:${servlet_api_version}"
 	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-json-org', version: jackson_version
 	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hppc', version: jackson_version

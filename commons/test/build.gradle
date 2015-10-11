@@ -1,12 +1,30 @@
 dependencies {
 	compile  group: 'com.jayway.awaitility', name: 'awaitility', version: awaility_version
-	compile  group: 'com.jayway.jsonpath', name: 'json-path'
-	compile  group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-	compile  group: 'org.springframework.boot', name: 'spring-boot-starter-jetty'
+//	compile  group: 'com.jayway.jsonpath', name: 'json-path'
+	compile  group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: spring_boot_version
+//	compile  group: 'org.springframework.boot', name: 'spring-boot-starter-jetty'
 	compile  group: 'org.assertj', name: 'assertj-core', version: assertj_core_version
 	compile  group: 'junit', name: 'junit'
-	compile  group: 'org.mockito', name: 'mockito-core'
-//	compile  group: 'com.mattbertolini', name: 'liquibase-slf4j', version: liquibase_slf4j_version
+//	compile  group: 'org.mockito', name: 'mockito-core'
+	compile 'org.yaml:snakeyaml:1.16'
+	compile (group: 'org.liquibase', name: 'liquibase-core', version: liquibase_core_version) {
+		exclude(module: 'jetty-servlet')
+	}
+	compile 'com.shazam:shazamcrest:0.11'
+
+	compile("org.dbunit:dbunit:2.5.0") {
+		exclude group: "junit"
+	}
+	compile 'org.codehaus.groovy:groovy-all:2.4.5'
+compile 'org.spockframework:spock-core:1.0-groovy-2.4'
+compile 'org.spockframework:spock-spring:1.0-groovy-2.4'
+compile 'org.springframework:spring-jdbc:4.2.1.RELEASE'
+compile 'org.springframework:spring-tx:4.2.1.RELEASE'
+compile 'org.springframework:spring-context-support:4.2.1.RELEASE'
+compile 'org.springframework:spring-context:4.2.1.RELEASE'
+	compile 'com.h2database:h2:1.4.189'
+
+	compile  group: 'com.mattbertolini', name: 'liquibase-slf4j', version: liquibase_slf4j_version
 	compile  group: 'org.hamcrest', name: 'hamcrest-library'
 	compile  group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: gatling_version
 }

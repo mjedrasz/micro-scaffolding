@@ -17,6 +17,7 @@ targetCompatibility=1.8
 
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'java'
 
 //apply from: 'sonar.gradle'
 ext {
@@ -30,8 +31,9 @@ configurations { providedRuntime }
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
+	apply plugin: 'groovy'
 	apply plugin: 'idea'
-	apply from: "$rootProject.projectDir/gatling.gradle"
+	//apply from: "$rootProject.projectDir/gatling.gradle"
 	
 	sourceCompatibility=1.8
 	targetCompatibility=1.8
@@ -43,12 +45,34 @@ subprojects {
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 		maven { url 'http://repo.maven.apache.org/maven2' }
 	}
+	dependencies {
+		compile group: 'javax.inject', name: 'javax.inject', version: javax_inject_version
+	}
 	clean { delete "target" }	
+	
+	
+	test {
+		systemProperty "test.include.fast", "true"
+	}
+ 
+	task dbTest(type: Test) {
+		systemProperty "test.include.db", "true"                   
+		systemProperty "test.include.fast", "true"                   
+	}
+	
+	// extra config just to see that the tests run in the right tasks
+	tasks.withType(Test) {
+		testLogging {
+			events 'passed'
+		}
+	}
 }
 
 configure (subprojects - project(':commons:test') - project(':commons:logback')) {
 	
 	dependencies {
+		compile 'org.projectlombok:lombok:1.16.6'
+
 		compile project(':commons:logback')
 		testCompile project(':commons:test')
 	}
