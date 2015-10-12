@@ -20,7 +20,7 @@ public class IndexController {
 	@RequestMapping(method = RequestMethod.GET, produces = { "application/hal+json" })
 	public ResponseEntity<ResourceSupport> index() {
 		ResourceSupport indexResource = new ResourceSupport();
-        indexResource.add(linkTo(methodOn(AccountQueryController.class).getAccounts(null, null)).withRel("accounts"));
-        return new ResponseEntity<>(indexResource, HttpStatus.OK);
+		indexResource.add(linkTo(methodOn(PersonQueryController.class).allPeople(null, null)).withRel("people"));
+		return new ResponseEntity<>(indexResource, HttpStatus.OK);
 	}
 }

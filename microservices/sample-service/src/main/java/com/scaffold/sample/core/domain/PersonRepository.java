@@ -13,8 +13,8 @@ public interface PersonRepository extends Repository<Person, Long> {
 
 	Optional<Person> findOne(Long id);
 	
-	@Query("Select p from person")
-	Stream<Person> streamAll();
+//	@Query("select p from Person p")
+	Stream<Person> findAll();
 	
 	List<Person> findByFirstName(String firstName);
 	

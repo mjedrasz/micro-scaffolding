@@ -19,7 +19,7 @@ public class SampleApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		System.err.println(this.presonRepository.streamAll());
+		System.err.println(this.presonRepository.findAll());
 	}
  
 	public static void main(String[] args) throws Exception {

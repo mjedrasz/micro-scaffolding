@@ -7,8 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.google.common.base.Preconditions;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
@@ -26,11 +30,20 @@ public class Person implements Serializable {
 	@Basic
 	private String lastName;
 	
+	@Basic
+	private boolean deleted;
+	
 	private Person() {}
 
-	private Person(Long id, String firstName, String lastName) {
+	private Person(Long id, String firstName, String lastName, boolean deleted) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.deleted = deleted;
+	}
+	
+	public void delete() {
+		Preconditions.checkArgument(!deleted);
+		this.deleted = true;
 	}
 }

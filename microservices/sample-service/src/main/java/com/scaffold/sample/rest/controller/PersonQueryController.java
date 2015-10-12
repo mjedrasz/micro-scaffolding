@@ -1,6 +1,8 @@
 package com.scaffold.sample.rest.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import java.util.List;
 
@@ -39,22 +41,22 @@ public class PersonQueryController {
 	}
 
 	@Timed
-	@RequestMapping(method = RequestMethod.GET, produces = { "application/hal+json" }, params = {"firstName"})
-	public HttpEntity<List<PersonResource>> allPeopleByFirstName(
-			@RequestParam("firstName") String firstName) {
+	@RequestMapping(method = RequestMethod.GET, produces = { "application/hal+json" }, params = { "firstName" })
+	public HttpEntity<List<PersonResource>> allPeopleByFirstName(@RequestParam("firstName") String firstName) {
 
 		List<Person> people = personService.findByFirstName(firstName);
-		
+
 		return new ResponseEntity<>(personResourceAssembler.toResources(people), HttpStatus.OK);
 	}
-	
+
 	@Timed
 	@RequestMapping(method = RequestMethod.GET, produces = { "application/hal+json" })
-	public HttpEntity<PagedResources<PersonResource>> peopleByFirstName(
+	public HttpEntity<PagedResources<PersonResource>> allPeople(
 			@PageableDefault(size = 100, page = 0) Pageable pageable, PagedResourcesAssembler<Person> assembler) {
-		
+
 		PagedResources<PersonResource> pagedResources = assembler.toResource(personService.findAll(pageable),
 				personResourceAssembler);
+		pagedResources.add(linkTo(methodOn(PersonCommandController.class).createPerson(null)).withRel("create"));
 		return new ResponseEntity<>(pagedResources, HttpStatus.OK);
 	}
 
