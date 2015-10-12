@@ -52,11 +52,6 @@ do
 	fi
 done
 
-com.scaffold
-com.samsung
-
-
-
 for ext in "${arr[@]}"
 do
 	replace="find $folder -type f -name '*.$ext' -print0 | xargs -0 sed -i 's/$fromReg/$toReg/g'"

@@ -40,7 +40,7 @@ class PersonRepositorySpec extends DbUnitSpec {
 		given:
 		dataSet PersonDataset.personDataset
 		when:
-		def people = repository.findAll()
+		def people = repository.streamAll()
 
 		then:
 		def peopleList = people.collect(Collectors.toList())
