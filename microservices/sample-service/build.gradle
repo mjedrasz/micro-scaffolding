@@ -8,6 +8,9 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web") {
 		exclude module: 'spring-boot-starter-tomcat'
 	}
+	compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+	compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+
 	compile("org.springframework.boot:spring-boot-starter-undertow")
 	compile "org.springframework.cloud:spring-cloud-netflix:${cloud_netflix_version}"
 	compile("org.springframework.cloud:spring-cloud-starter-eureka:${cloud_netflix_version}")
@@ -43,6 +46,7 @@ dependencies {
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web') { exclude module: 'spring-boot-starter-tomcat' }
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-spring-service-connector'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-localconfig-connector'
+		compile group: 'org.springframework.cloud', name: 'spring-cloud-security', version: '1.0.0.RELEASE'
 	compile(group: 'org.springframework', name: 'spring-context-support') { exclude(module: 'quartz') }
 	compile group: 'org.springframework.security', name: 'spring-security-config', version: spring_security_version
 	compile group: 'org.springframework.security', name: 'spring-security-data', version: spring_security_version
@@ -50,7 +54,7 @@ dependencies {
 	compile group: 'org.springframework.security', name: 'spring-security-messaging', version: spring_security_version
 	compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: spring_security_oauth2_version
 	compile(group: 'io.springfox', name: 'springfox-swagger2', version: springfox_version){ exclude module: 'mapstruct' }
-
+	compile("org.springframework.cloud:spring-cloud-starter-security:1.0.0.RELEASE")
 	compile group: 'org.postgresql', name: 'postgresql', version: postgresql_version
 	compile group: 'com.h2database', name: 'h2'
 	compile group: 'fr.ippon.spark.metrics', name: 'metrics-spark-reporter', version: metrics_spark_reporter_version

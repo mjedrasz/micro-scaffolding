@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.codahale.metrics.annotation.Timed;
 import com.scaffold.sample.core.application.PersonService;
@@ -33,11 +34,13 @@ public class PersonQueryController {
 
 	private final PersonResourceAssembler personResourceAssembler;
 	private final PersonService personService;
+	private final RestTemplate restTemplate;
 
 	@Inject
 	public PersonQueryController(PersonResourceAssembler personResourceAssembler, PersonService personService) {
 		this.personResourceAssembler = checkNotNull(personResourceAssembler);
 		this.personService = checkNotNull(personService);
+		this.restTemplate = new RestTemplate();
 	}
 
 	@Timed
@@ -63,10 +66,23 @@ public class PersonQueryController {
 	@Timed
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/hal+json" })
 	public ResponseEntity<PersonResource> personById(@PathVariable Long id) {
+		try {
+		PersonResource forObject = restTemplate.getForObject("http://localhost:7475/api/people/abc", PersonResource.class);
+		System.out.println(forObject);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		//@formatter:off
 		return personService.findById(id)
 				.map(person -> new ResponseEntity<>(personResourceAssembler.toResource(person),	HttpStatus.OK))
 				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 		//@formatter:on
+	}
+	@Timed
+	@RequestMapping(value = "/abc", method = RequestMethod.GET, produces = { "application/hal+json" })
+	public ResponseEntity<PersonResource> personById2() {
+				//@formatter:off
+				return new ResponseEntity<>(new PersonResource("f", "l"), HttpStatus.OK);
+				//@formatter:on
 	}
 }

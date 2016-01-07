@@ -13,4 +13,12 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile ("org.springframework.cloud:spring-cloud-starter-zuul:${zuul_version}")
 	compile("org.springframework.cloud:spring-cloud-starter-eureka:${eureka_version}")
+	
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-security', version: '1.0.0.RELEASE'
+	compile(group: 'org.springframework', name: 'spring-context-support') { exclude(module: 'quartz') }
+	compile group: 'org.springframework.security', name: 'spring-security-config', version: spring_security_version
+	compile group: 'org.springframework.security', name: 'spring-security-data', version: spring_security_version
+	compile group: 'org.springframework.security', name: 'spring-security-web', version: spring_security_version
+	compile group: 'org.springframework.security', name: 'spring-security-messaging', version: spring_security_version
+	compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: spring_security_oauth2_version
 }

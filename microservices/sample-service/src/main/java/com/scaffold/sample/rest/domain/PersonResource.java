@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import org.springframework.hateoas.ResourceSupport;
 
@@ -14,6 +15,7 @@ import com.scaffold.sample.core.domain.Person;
 @SuppressWarnings("serial")
 @Data
 @AllArgsConstructor
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class PersonResource extends ResourceSupport implements Serializable {

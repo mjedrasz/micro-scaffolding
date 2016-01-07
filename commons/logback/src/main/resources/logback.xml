@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<logger name="com.netflix.eureka" level="DEBUG" />
+	<logger name="com.netflix.hystrix" level="DEBUG" />
+	<logger name="com.netflix.ribbon" level="DEBUG" />
 <!-- 	<logger name="org.springframework.web" level="WARN" />
 	<logger name="org.sample.scaffold" level="DEBUG" />
 

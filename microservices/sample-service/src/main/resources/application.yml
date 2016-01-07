@@ -13,6 +13,19 @@ server:
 management:
   context-path: /manage
   
+#spring:
+#  oauth2:
+#    client:
+#      scope: openid
+#      clientId: 641537449823-qefcttdjeao1aivo73kua9pvie6squ0b.apps.googleusercontent.com
+#      clientSecret: qILafKK74EKB64FjOXe6VfRG
+#      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+#      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+#      clientAuthenticationScheme: form
+#    resource:
+#      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+#      preferTokenInfo: false
+      
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10

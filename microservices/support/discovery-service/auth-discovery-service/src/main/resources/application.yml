@@ -1,19 +1,16 @@
 server:
-  port: ${PORT:8761}
-
+  port: ${PORT:12234}
+  
 endpoints.jmx.enabled: false
 spring.jmx.enabled: false
 
 eureka:
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  server:
-    waitTimeInMsWhenSyncEmpty: 0
+      defaultZone: http://localhost:8761/eureka/
   instance:     
-    appname: openam
     hostname: localhost
     nonSecurePort: 8080
     statusPageUrlPath: /OpenAM-12.0.0/isAlive.jsp

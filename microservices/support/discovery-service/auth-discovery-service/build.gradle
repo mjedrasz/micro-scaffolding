@@ -1,0 +1,17 @@
+apply plugin: 'spring-boot'
+apply from: "$rootProject.projectDir/boot.gradle" 
+
+springBoot {
+	mainClass = 'com.scaffold.support.eureka.app.EurekaApplication' 
+	
+	requiresUnpack = ['com.netflix.eureka:eureka-core','com.netflix.eureka:eureka-client']
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter:${spring_boot_version}") {
+		exclude module: 'spring-boot-starter-tomcat'
+	}
+//	compile("org.springframework.boot:spring-boot-starter-undertow:${spring_boot_version}")
+//	compile("org.springframework.boot:spring-boot-starter-actuator:${spring_boot_version}")
+	compile("org.springframework.cloud:spring-cloud-starter-eureka:${eureka_version}")
+}
