@@ -88,10 +88,10 @@ public class StaticServer extends AbstractVerticle {
 
 		.doOnNext(p -> {
 			if (p.getName().equals("working")) {
-				create.onNext(new Pojo(Math.random() + "bbbb"));
+				create.onNext(new Pojo("bbbb"));
 				System.out.println("tutaj");
 			}
-			System.out.println("srv" + p.getName());
+			System.out.println(p.getName());
 		}).map(i -> new Pojo(i.getName().toUpperCase()))
 
 		.capacity(1l) // auto-flush every 5 elements
@@ -104,17 +104,16 @@ public class StaticServer extends AbstractVerticle {
 		// create.subscribe(b);
 		 create.start();
 
-		client.start(ch -> 
-//			ch.subscribe(create);
-//			ch.take(1).consume(d -> {System.out.println("abc:" + d);});
-//			return ch.writeWith(
-				ch.writeWith(Stream.just(new Pojo("fdas"))))
-//				Stream<Pojo> broadcast = ch.broadcast();
-//			}));
-		.get();
-//
-//		b.onNext(new Pojo("aaaa"));
-//		create.onNext(new Pojo("bbbb"));
+		client.start(ch -> {
+			ch.subscribe(create);
+			return ch.writeWith(create.doOnNext(n -> {
+				System.out.println(n);
+				ch.writeWith(Stream.just(n));
+			}));
+		}).get();
+
+		b.onNext(new Pojo("aaaa"));
+		create.onNext(new Pojo("bbbb"));
 		// b.onNext(new Pojo("fsdfadfa"));
 		// broadcast.onNext(new Pojo("at last"));
 		//
