@@ -11,7 +11,45 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter:${spring_boot_version}") {
 		exclude module: 'spring-boot-starter-tomcat'
 	}
-//	compile("org.springframework.boot:spring-boot-starter-undertow:${spring_boot_version}")
+	compile("org.springframework.boot:spring-boot-starter-undertow:${spring_boot_version}")
 //	compile("org.springframework.boot:spring-boot-starter-actuator:${spring_boot_version}")
 	compile("org.springframework.cloud:spring-cloud-starter-eureka:${eureka_version}")
+	compile 'io.vertx:vertx-core:3.2.0'
+	compile 'io.vertx:vertx-rx-java:3.2.0'
+	compile 'io.vertx:vertx-web:3.2.0'
+	compile 'io.vertx:vertx-reactive-streams:3.2.0'
+
+
 }
+
+ext {
+	reactorVersion = '2.5.0.BUILD-SNAPSHOT'
+  }
+  
+//  repositories {
+//	//maven { url 'http://repo.spring.io/libs-release' }
+//	//maven { url 'http://repo.spring.io/libs-milestone' }
+//	maven { url 'http://repo.spring.io/libs-snapshot' }
+//	mavenCentral()
+//  }
+  
+  dependencies {
+	// Reactor Core
+	compile "io.projectreactor:reactor-core:$reactorVersion"
+  
+	// Reactor Stream
+	compile "io.projectreactor:reactor-stream:$reactorVersion"
+  
+	// Reactor Spring
+	 compile "io.projectreactor:reactor-spring:$reactorVersion"
+	 compile "io.reactivex:rxnetty-http:0.5.0-SNAPSHOT"
+	 // Reactor Net
+	  compile "io.projectreactor:reactor-net:$reactorVersion"
+  
+	 // Reactor Codecs (Jackson, Kryo...)
+	  compile "io.projectreactor:reactor-codec:$reactorVersion"
+  
+	 // Netty for Reactor Net (auto detects if in classpath)
+	  compile 'io.netty:netty-all:4.0.33.Final'
+  }
+  
