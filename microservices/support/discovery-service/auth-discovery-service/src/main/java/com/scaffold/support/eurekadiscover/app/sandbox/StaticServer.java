@@ -12,17 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
 import org.springframework.stereotype.Component;
 
 import reactor.core.publisher.EmitterProcessor;
-import reactor.core.publisher.Mono;
 import reactor.core.subscriber.ConsumerSubscriber;
 import reactor.io.net.preprocessor.CodecPreprocessor;
 import reactor.rx.Broadcaster;
 import reactor.rx.Stream;
-import reactor.rx.net.ChannelStream;
 import reactor.rx.net.NetStreams;
 import reactor.rx.net.tcp.ReactorTcpClient;
 import reactor.rx.net.tcp.ReactorTcpServer;
@@ -106,7 +102,6 @@ public class StaticServer extends AbstractVerticle {
 		);
 		client.start(ch -> {
 			System.out.println("Handling");
-			
 			broadcaster.consume(po -> {
 				System.out.println(po);
 				Stream.from(ch.writeWith(Stream.just(po))).consume();
