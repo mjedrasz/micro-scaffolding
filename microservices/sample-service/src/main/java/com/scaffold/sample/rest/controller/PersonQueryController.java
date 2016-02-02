@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.codahale.metrics.annotation.Timed;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.scaffold.sample.core.application.PersonService;
 import com.scaffold.sample.core.domain.Person;
 import com.scaffold.sample.rest.assembler.PersonResourceAssembler;
+import com.scaffold.sample.rest.config.View;
 import com.scaffold.sample.rest.domain.PersonResource;
 
 @RestController
@@ -53,6 +55,7 @@ public class PersonQueryController {
 	}
 
 	@Timed
+    @JsonView(View.Other.class)
 	@RequestMapping(method = RequestMethod.GET, produces = { "application/hal+json" })
 	public HttpEntity<PagedResources<PersonResource>> allPeople(
 			@PageableDefault(size = 100, page = 0) Pageable pageable, PagedResourcesAssembler<Person> assembler) {

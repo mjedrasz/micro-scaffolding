@@ -25,7 +25,7 @@ import com.scaffold.sample.rest.assembler.PersonResourceAssembler;
 import com.scaffold.sample.rest.domain.PersonResource;
 
 @RestController
-@RequestMapping("/api/people")
+@RequestMapping("/api/jpeople")
 public class PersonCommandController {
 
 	private final PersonResourceAssembler personResourceAssembler;

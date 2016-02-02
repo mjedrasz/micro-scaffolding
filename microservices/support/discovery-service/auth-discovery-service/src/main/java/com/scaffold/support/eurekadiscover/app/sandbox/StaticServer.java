@@ -1,5 +1,6 @@
 package com.scaffold.support.eurekadiscover.app.sandbox;
 
+import io.netty.handler.codec.http.HttpClientCodec;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.streams.Pump;
@@ -15,7 +16,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import reactor.core.publisher.EmitterProcessor;
+import reactor.core.publisher.Mono;
 import reactor.core.subscriber.ConsumerSubscriber;
+import reactor.io.net.impl.netty.NettyClientSocketOptions;
 import reactor.io.net.preprocessor.CodecPreprocessor;
 import reactor.rx.Broadcaster;
 import reactor.rx.Stream;
@@ -57,13 +60,13 @@ public class StaticServer extends AbstractVerticle {
 			}).listen(1234);
 	}
 
-
 	public void reactor() throws InterruptedException {
 		final int port = 1234;// SocketUtils.findAvailableTcpPort();
 
-		final CountDownLatch latch = new CountDownLatch(1);
-		ReactorTcpClient<Pojo, Pojo> client = NetStreams.tcpClient(s -> s.connect("localhost", 1234)
-				.preprocessor(CodecPreprocessor.json(Pojo.class)));
+		ReactorTcpClient<Pojo, Pojo> client = NetStreams.tcpClient(s -> s.connect("localhost", 1234).preprocessor(
+				CodecPreprocessor.json(Pojo.class)));
+//				.options(new NettyClientSocketOptions()
+//				  .pipelineConfigurer(pipeline -> pipeline.addLast(new HttpClientCodec()))));
 
 		final ReactorTcpServer<Pojo, Pojo> server = NetStreams.tcpServer(s -> s.listen("localhost", port).preprocessor(
 				CodecPreprocessor.json(Pojo.class)));
@@ -89,7 +92,7 @@ public class StaticServer extends AbstractVerticle {
 			if (p.getName().equals("working")) {
 				System.out.println("tutaj");
 				for (int i = 0; i < 10; i++) {
-					broadcaster.onNext(new Pojo(""+i));
+					broadcaster.onNext(new Pojo("" + i));
 				}
 			}
 			System.out.println("RECEIVED:" + p.getName());
@@ -104,7 +107,7 @@ public class StaticServer extends AbstractVerticle {
 			System.out.println("Handling");
 			broadcaster.consume(po -> {
 				System.out.println(po);
-				Stream.from(ch.writeWith(Stream.just(po))).consume();
+				ch.writeWith(Stream.just(po)).subscribe();
 			});
 			return Stream.never();
 		}).doOnTerminate((i, t) -> {
@@ -113,8 +116,12 @@ public class StaticServer extends AbstractVerticle {
 			System.out.println("subscrie" + s);
 		}).doOnSuccess(s -> {
 			System.out.println("Success end");
-		}).subscribe();
-		System.out.println("End");
+		}).subscribe();;
+		
+		broadcaster.onNext(new Pojo("first"));
+		System.out.println("End1");
+		broadcaster.onNext(new Pojo("second"));
+		System.out.println("End2");
 	}
 
 	@Data

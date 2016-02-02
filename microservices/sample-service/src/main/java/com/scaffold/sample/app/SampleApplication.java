@@ -13,10 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+<<<<<<< Updated upstream
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.security.oauth2.sso.OAuth2SsoConfigurerAdapter;
 import org.springframework.context.annotation.Configuration;
+=======
+>>>>>>> Stashed changes
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -25,13 +28,19 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
+import com.scaffold.sample.core.config.SwaggerConfig;
 import com.scaffold.sample.core.domain.PersonRepository;
 import com.scaffold.sample.rest.config.SampleRestConfig;
 
+<<<<<<< Updated upstream
 @SpringBootApplication(exclude = LiquibaseAutoConfiguration.class)
 //@EnableOAuth2Sso
 @EnableDiscoveryClient
 @Import(SampleRestConfig.class)
+=======
+@SpringBootApplication
+@Import({SampleRestConfig.class, SwaggerConfig.class})
+>>>>>>> Stashed changes
 public class SampleApplication implements CommandLineRunner {
 
 	@Inject
