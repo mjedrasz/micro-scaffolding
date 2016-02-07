@@ -53,13 +53,10 @@ dependencies {
 	compile group: 'org.springframework.security', name: 'spring-security-web', version: spring_security_version
 	compile group: 'org.springframework.security', name: 'spring-security-messaging', version: spring_security_version
 	compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: spring_security_oauth2_version
-<<<<<<< Updated upstream
 	compile(group: 'io.springfox', name: 'springfox-swagger2', version: springfox_version){ exclude module: 'mapstruct' }
 	compile("org.springframework.cloud:spring-cloud-starter-security:1.0.0.RELEASE")
-=======
 //	compile(group: 'io.springfox', name: 'springfox-swagger2', version: springfox_version){ exclude module: 'mapstruct' }
 
->>>>>>> Stashed changes
 	compile group: 'org.postgresql', name: 'postgresql', version: postgresql_version
 	compile group: 'com.h2database', name: 'h2'
 	compile group: 'fr.ippon.spark.metrics', name: 'metrics-spark-reporter', version: metrics_spark_reporter_version

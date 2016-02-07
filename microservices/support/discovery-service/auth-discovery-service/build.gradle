@@ -34,7 +34,10 @@ ext {
 //  }
   
   dependencies {
-	// Reactor Core
+	// .Reactor Core
+	//  compile "io.projectreactor:reactive-streams-commons:0.1.0.BUILD-SNAPSHOT"
+	  
+	compile "io.projectreactor:reactive-streams-commons:0.1.0.BUILD-SNAPSHOT"
 	compile "io.projectreactor:reactor-core:$reactorVersion"
   
 	// Reactor Stream
@@ -50,6 +53,8 @@ ext {
 	  compile "io.projectreactor:reactor-codec:$reactorVersion"
   
 	 // Netty for Reactor Net (auto detects if in classpath)
-	  compile 'io.netty:netty-all:4.0.33.Final'
+	  compile 'io.netty:netty-all:4.1.0.CR2'
+	  compile 'io.netty:netty-codec-xml:4.1.0.CR2'
+
   }
   
